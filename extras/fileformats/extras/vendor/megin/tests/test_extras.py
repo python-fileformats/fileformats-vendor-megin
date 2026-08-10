@@ -27,7 +27,7 @@ def test_fif_deidentify(fif_path, tmp_path):
     fif = Fif(fif_path)
     orig_metadata = fif.metadata
 
-    deid_fif = fif.deidentify(out_dir=tmp_path)
+    deid_fif = fif.deidentify(tmp_path)
 
     assert isinstance(deid_fif, Fif)
 
