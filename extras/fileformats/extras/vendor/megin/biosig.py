@@ -1,15 +1,13 @@
 import os
 import typing as ty
 from pathlib import Path
-import tempfile
 
 import mne.io
 
-from fileformats.core import extra_implementation, FileSet
 from fileformats.biosig.base import Biosig
-from fileformats.vendor.megin.biosig import Fif
-
+from fileformats.core import extra_implementation, FileSet
 from fileformats.extras.biosig.utils import mne_deidentify
+from fileformats.vendor.megin.biosig import Fif
 
 
 @extra_implementation(FileSet.read_metadata)
@@ -20,11 +18,11 @@ def fif_read_metadata(fif: Fif, **kwargs: ty.Any) -> ty.Mapping[str, ty.Any]:
 @extra_implementation(Biosig.deidentify)
 def fif_deidentify(
     fif: Fif,
+    out_dir: os.PathLike[str],
     spec: ty.Any = None,
-    out_dir: os.PathLike[str] | None = None,
     **kwargs: ty.Any,
 ) -> Fif:
-    out_dir = Path(tempfile.mkdtemp() if out_dir is None else out_dir)
+    out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     raw = mne.io.read_raw_fif(fif, preload=True, verbose=False)
     raw.info = mne_deidentify(raw, spec)
