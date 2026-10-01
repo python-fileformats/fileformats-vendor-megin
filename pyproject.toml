@@ -7,7 +7,7 @@ name = "fileformats-vendor-megin"
 description = "Classes for representing different file formats in Python classes for use in type hinting in data workflows"
 readme = "README.rst"
 requires-python = ">=3.8"
-dependencies = ["fileformats >= 0.17.5", "fileformats-biosig >= 0.1.0"]
+dependencies = ["fileformats >= 0.19.0", "fileformats-biosig >= 0.3.0"]
 license = { file = "LICENSE" }
 authors = [{ name = "Thomas G. Close", email = "tom.g.close@gmail.com" }]
 maintainers = [{ name = "Thomas G. Close", email = "tom.g.close@gmail.com" }]
